@@ -36,6 +36,7 @@ export default function PokemonCard(){
             return[...prev, data];
         });
 
+        
         setInputName("");
 
     } catch (err) {
@@ -100,9 +101,9 @@ export default function PokemonCard(){
 
               {/* Card Footer (Type and Attack Info) */}
               <div style={{ fontSize: "12px", textAlign: "left" }}>
-                <p><strong>Type:</strong> {pokemonTypes}</p>
-                <p><strong>Attack:</strong> {attack}</p>
-                <p style={{ color: "#7f8c8d", fontSize: "10px" }}>ID: #{p.id}</p>
+                <p style={{color: "green", fontSize:"15px"}}><strong>Type:</strong> {pokemonTypes}</p>
+                <p style={{color:"purple", fontSize: "15px"}}><strong>Attack:</strong> {attack}</p>
+                <p style={{ color: "blue", fontSize: "15px" }}>ID: #{p.id}</p>
               </div>
             </div>
           );

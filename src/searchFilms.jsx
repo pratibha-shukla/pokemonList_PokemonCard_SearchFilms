@@ -25,8 +25,8 @@ export default function StarWarsFilmFinder() {
       const people = await res.json();
 
       
-      const targetCharacter = people.find(
-        (person) => person.name.toLowerCase() === name.trim().toLowerCase()
+      const targetCharacter = people.find((person) =>
+         person.name.toLowerCase() === name.trim().toLowerCase()
       );
 
       if (!targetCharacter) {
