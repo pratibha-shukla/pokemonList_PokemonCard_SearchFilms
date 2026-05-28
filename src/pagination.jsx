@@ -29,6 +29,12 @@ export default function PaginationProductList() {
 
  
 useEffect(() => {
+    if (!debouncedSearch.trim()) {
+    setProductList([]);
+    setLoading(false);
+    setError(null);
+    return; 
+  }
   const fetchProducts = async () => {
     setLoading(true);
     setError(null);
@@ -74,8 +80,8 @@ useEffect(() => {
         onChange={(e) => setProductSearch(e.target.value)}
        style={{width: "200px", padding: "10px", color: "red", background: "white", borderRadius: "8px"}}/>
 
-      {loading && <p>Loading products...</p>}
-      {error && <p>Error: {error}</p>}
+      {loading && <p style={{color: "purple"}}>Loading products...</p>}
+      {error && <p style={{color: "red"}}>Error: {error}</p>}
 
       {!loading && (
         <ul>
@@ -92,7 +98,7 @@ useEffect(() => {
         </ul>
       )}
 
-      {/* Pagination Controls */}
+     
       {!loading && productList.length > 0 && (
         <div>
           <button onClick={() => setCurrentPage(1)} disabled={currentPage === 1}
