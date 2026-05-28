@@ -71,10 +71,10 @@ export default function StarWarsFilmFinder() {
           placeholder="Type(Luke Skywalker)..."
           value={name}
           onChange={(e) => setName(e.target.value)}
-          disabled={loading} style={{padding: "10px", width: "160px",}}
+          disabled={loading} style={{padding: "10px",width: "160px", color: "blue"}}
         />
-        <button type="submit" disabled={loading} style={{ marginLeft: "8px",padding: "10px", width: "90px" }}>
-          Search
+        <button type="submit" disabled={loading} style={{ marginLeft: "8px",padding: "10px", width: "120px",color: "red" }}>
+          Search Films
         </button>
       </form>
 

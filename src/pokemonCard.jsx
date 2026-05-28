@@ -49,13 +49,13 @@ export default function PokemonCard(){
 
         return(
         <div>
-            <h1>Pokemon Card</h1>
+            <h3>Pokemon Card</h3>
             <input 
             type="text"
             placeholder="type here(bulbasaur,charizard,squirtle,wartortle).." 
             value={inputName}
             onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-            onChange={(e) => setInputName(e.target.value)} style={{padding: "20px", width: "400px"}}/>
+            onChange={(e) => setInputName(e.target.value)} style={{padding: "15px", width: "290px", color: "blue"}}/>
 
             {loading && <p style={{color: "green"}}>loading ....</p>}
             {error && <p style={{ color: "red"}}>{error}</p>}

@@ -2,7 +2,9 @@ import { useState } from 'react'
 
 
 
-
+import PokemonCard from './pokemonCard'
+import PokemonList from './pokemon'
+import SearchFilms from "./searchFilms"
 import PaginationProductList from './pagination'
 
 function App() {
@@ -10,8 +12,11 @@ function App() {
 
   return (
     <>
-    <PaginationProductList></PaginationProductList>
- 
+    
+ <PokemonCard></PokemonCard>
+  <SearchFilms></SearchFilms>
+  <PaginationProductList></PaginationProductList>
+ <PokemonList></PokemonList>
 
     </>
   )

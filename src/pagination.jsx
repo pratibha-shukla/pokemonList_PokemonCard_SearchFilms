@@ -95,13 +95,14 @@ useEffect(() => {
       {/* Pagination Controls */}
       {!loading && productList.length > 0 && (
         <div>
-          <button onClick={() => setCurrentPage(1)} disabled={currentPage === 1}>
+          <button onClick={() => setCurrentPage(1)} disabled={currentPage === 1}
+             style={{color: "blue", padding: "5px"}}>
             First
           </button>
           <button
             onClick={() => setCurrentPage((prev) => prev - 1)}
             disabled={currentPage === 1}
-          >
+           style={{color: "blue", padding: "5px"}}>
             Prev
           </button>
 
@@ -110,7 +111,7 @@ useEffect(() => {
               key={number}
               onClick={() => setCurrentPage(number)}
               disabled={currentPage === number} 
-            >
+             style={{color: "green", padding: "5px"}}>
               {number}
             </button>
           ))}
@@ -118,13 +119,13 @@ useEffect(() => {
           <button
             onClick={() => setCurrentPage((prev) => prev + 1)}
             disabled={currentPage === totalPage}
-          >
+           style={{color: "blue", padding: "5px"}}>
             Next
           </button>
           <button
             onClick={() => setCurrentPage(totalPage)}
             disabled={currentPage === totalPage}
-          >
+           style={{color: "blue", padding: "5px"}}>
             Last
           </button>
         </div>
