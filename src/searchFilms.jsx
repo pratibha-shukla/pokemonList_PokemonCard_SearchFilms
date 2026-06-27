@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { UseDebounce } from "./modernComponents/Debounce";
+
 
 export default function StarWarsFilmFinder() {
   const [name, setName] = useState("");
@@ -7,9 +9,22 @@ export default function StarWarsFilmFinder() {
   const [error, setError] = useState("");
   const [searchedCharacter, setSearchedCharacter] = useState("");
 
-  async function searchFilmsMock(e) {
-    if (e) e.preventDefault();
-    if (!name.trim()) return;
+
+   // 2. Pass the raw "name" input state to the hook
+    const debouncedName = UseDebounce({ value: name, delay: 600 });
+
+     // 3. Extracted search logic out of the form handler so it can be called by useEffect
+  async function searchFilms(searchQuery) {
+    if (!searchQuery.trim()) {
+      // Clear results if user erases the input
+      setFilms([]);
+      setSearchedCharacter("");
+      return;
+    }
+
+  // async function searchFilmsMock(e) {
+  //   if (e) e.preventDefault();
+  //   if (!name.trim()) return;
 
     setError("");
     setLoading(true);
@@ -26,11 +41,11 @@ export default function StarWarsFilmFinder() {
 
       
       const targetCharacter = people.find((person) =>
-         person.name.toLowerCase() === name.trim().toLowerCase()
+        person.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
       );
 
       if (!targetCharacter) {
-        throw new Error(`Character "${name}" not found.`);
+        throw new Error(`Character "${searchQuery}" not found.`);
       }
 
       setSearchedCharacter(targetCharacter.name);
@@ -44,8 +59,7 @@ export default function StarWarsFilmFinder() {
         });
 
         const filmDataArray = await Promise.all(filmPromises);
-        
-        
+                
         const formattedFilms = filmDataArray.map((film) => ({
           id: film.episode_id || film.url,
           title: film.title,
@@ -63,9 +77,14 @@ export default function StarWarsFilmFinder() {
     }
   }
 
+    // 4. Trigger the search automatically whenever the debouncedName updates
+  useEffect(() => {
+    searchFilms(debouncedName);
+  }, [debouncedName]);
+
   return (
     <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
-      <form onSubmit={searchFilmsMock}>
+      <form onSubmit={searchFilms}>
         <input
           type="text"
           placeholder="Type(Luke Skywalker)..."
